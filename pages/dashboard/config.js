@@ -6,8 +6,6 @@ import { useRouter } from 'next/router'
 import Image from 'next/image'
 import styles from '../../styles/Config.module.scss'
 
-import Lousa from '../../public/Lousa.png'
-
 export default function config() {
     const router = useRouter()
 
@@ -80,8 +78,7 @@ export default function config() {
 
                     <div>
 
-                        <Image alt='' src={Lousa} />
-
+                       
                     </div>
                     <div>
 
