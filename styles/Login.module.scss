@@ -1,0 +1,131 @@
+.container {
+    main {
+        display: flex;
+        justify-content: center;
+    }
+}
+
+.session {
+
+    display: flex;
+    flex-wrap: wrap;
+
+    margin: 5% 20%;
+    flex: 1;
+    height: 40rem;
+
+    div:first-child {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+
+        flex: 2;
+        background-color: #fafafa;
+
+        img {
+            height: 18rem;
+        }
+
+    }
+
+    div:last-child {
+
+        background-color: #fafafa;
+        flex: 2;
+
+        padding: 1.5rem;
+        display: flex;
+        justify-content: center;
+        flex-direction: column;
+
+        h1 {
+            font-size: 1.4rem;
+            margin-top: 1rem;
+            margin-bottom: 2rem;
+        }
+
+        h2 {
+            margin-top: .5rem;
+            font-size: 1.2rem;
+            margin-bottom: .3rem;
+        }
+
+        input {
+            background: transparent;
+            border: 1px solid #10364A;
+            outline: none;
+            border-radius: .5rem;
+            padding: 1rem;
+            color: #10364A;
+
+            &::placeholder {
+                color: #10364A;
+            }
+        }
+
+        input.move {
+            animation: move 1s ease;
+            border: 1px solid red;
+
+            &::placeholder {
+                color: red;
+            }
+        }
+
+        a {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            font-weight: bold;
+            padding: 1rem;
+            border-radius: .5rem;
+            background-color: #10364A;
+            color: white;
+            margin-top: 2rem;
+
+            svg {
+                margin-right: 1rem;
+            }
+        }
+
+        h3 {
+            margin: 2% 0%;
+            text-align: center;
+
+            azul {
+                color: #4292BF;
+            }
+        }
+
+    }
+
+}
+
+
+@media(max-width: 800px) {
+    .container {
+        .session { 
+            div:first-child {
+                display: none !important;
+            }
+            div:last-child {
+                height: 100%;
+            }
+        }
+    }
+}
+
+@keyframes move{
+    25% {
+        transform: translateX(-.5rem)
+    }
+    50% {
+        transform: translateX(.5rem)
+    }
+    75% {
+        transform: translateX(-.5rem)
+    }
+    100% {
+        transform: translateX(0rem)
+    }
+}

@@ -1,0 +1,39 @@
+@import url('https://fonts.googleapis.com/css2?family=Coming+Soon&display=swap');
+html,
+body {
+  padding: 0;
+  margin: 0;
+  color: #083f5c;
+  background-color: #f4f4f4;
+  background-image: url('https://img.freepik.com/vetores-gratis/amarrotou-a-textura-de-fundo-de-papel_1048-2259.jpg?size=338&ext=jpg');
+  font-family: 'Coming Soon', cursive;
+  animation: show 1s ease;
+}
+
+h1, h2, h3, h4, h5, h6, ul, li {
+  padding: 0;
+  margin: 0;
+  list-style: none;
+}
+
+a {
+  color: inherit;
+  text-decoration: none;
+}
+
+* {
+  padding: 0;
+  margin: 0;
+  box-sizing: border-box;
+}
+
+@keyframes show {
+  from {
+    transform: translateY(-2rem);
+    opacity: 0;
+  }
+  to {
+    transform: translateY(0rem);
+    opacity: 1;
+  }
+}

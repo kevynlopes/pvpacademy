@@ -1,0 +1,138 @@
+.container {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    position: fixed;
+    bottom: 0%;
+    left: 33%;
+    padding: 2rem;
+    margin: 0;
+
+    background-color: white;
+    border-radius: .8rem .8rem 0rem 0rem;
+
+    svg {
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        margin-right: 1rem;
+        height: 100%;
+    }
+
+    p, h1, svg {
+        padding: 0;
+    }
+
+    h1 {
+        margin: 0;
+        font-size: 1.4rem;
+    }
+
+    p {
+        margin-top: 0;
+        margin-bottom: 0;
+        font-weight: bold;
+        width: 75%;
+        font-size: 1rem;
+        margin-right: 0;
+    }
+
+    div:nth-child(1) {
+
+        padding-right: .5rem;
+        border-right: 3px solid black;
+        margin-right: 2rem;
+
+    }
+
+    div:nth-child(2) {
+
+        margin-left: 3px solid black;
+
+    }
+
+    animation: show 1s ease;
+}
+
+.hidden {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    position: fixed;
+    bottom: 0%;
+    left: 33%;
+    padding: 2rem;
+    margin: 0;
+
+    transform: translateY(3rem);
+    opacity: 0;
+
+    background-color: white;
+    border-radius: .8rem .8rem 0rem 0rem;
+
+    svg {
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        margin-right: 1rem;
+        height: 100%;
+    }
+
+    p, h1, svg {
+        padding: 0;
+    }
+
+    h1 {
+        margin: 0;
+        font-size: 1.4rem;
+        color: black;
+    }
+
+    p {
+        margin-top: 0;
+        margin-bottom: 0;
+        color: black;
+        font-weight: bold;
+        width: 75%;
+        font-size: 1rem;
+        margin-right: 0;
+    }
+
+    div:nth-child(1) {
+
+        padding-right: .5rem;
+        border-right: 3px solid black;
+        margin-right: 2rem;
+
+    }
+
+    div:nth-child(2) {
+
+        margin-left: 3px solid black;
+
+    }
+
+    animation: hidden 1s ease;
+}
+
+@keyframes hidden {
+    from {
+        transform: translateY(0rem);
+        opacity: 1;
+    }
+    to {
+        transform: translateY(3rem);
+        opacity: 0;
+    }
+}
+
+@keyframes show {
+    from {
+        transform: translateY(2rem);
+        opacity: 0;
+    }
+    to {
+        transform: translateY(0rem);
+        opacity: 1;
+    }
+}

@@ -1,0 +1,170 @@
+.container {
+    nav {
+        padding-top: 3%;
+        padding-right: 5%;
+
+        svg {
+            height: 2rem;
+        }
+
+        svg:first-child {
+            margin-left: 95%;
+            margin-right: 1rem;
+        }
+    }
+
+}
+
+.session {
+    display: grid;
+    grid-template-columns: 1fr 1fr 1fr;
+    gap: 0px 0px;
+    grid-auto-flow: row;
+    grid-template-areas:
+      "Info Info Info"
+      "Aulas Player Player"
+      "Aulas Player Player"
+      "Aulas Player Player";
+    margin: 5% 15%;
+  }
+  
+.aulas { 
+
+    border-radius: .8rem;
+
+    grid-area: Aulas;
+    background-color: #fafafa;
+    margin-top: 1.5rem;
+    margin-right: 1.5rem;
+
+    h1 {
+        font-size: 1rem;
+        text-align: center;
+        padding: 1.5rem;
+        background-color: #4292BF;
+        border-radius: .8rem;
+        color: white;
+    }
+
+    ul li {
+        font-size: 1rem;
+        text-align: center;
+        padding: 1.5rem;
+        cursor: pointer;
+        border-radius: .8rem;
+    }
+
+    height: 31.5rem;
+    overflow: auto;
+
+    &::-webkit-scrollbar {
+        margin-left: 1rem;
+        width: 10px;
+    }
+      
+    &::-webkit-scrollbar-track {
+        margin-left: 1rem;
+        border-radius: .8rem;
+        background: white;
+    }
+      
+
+    &::-webkit-scrollbar-thumb {
+        margin-left: 1rem;
+        border-radius: .8rem;
+        background: #4292BF;
+    }
+
+}
+  
+.info { 
+    display: flex;
+    grid-area: Info;
+
+    div {
+        display: flex;
+        padding: 3rem;
+        flex-direction: column;
+        border-radius: .8rem;
+        background-color: #fafafa;
+        margin-right: 1.5rem;
+        flex: 4;
+
+        h1 {
+            font-size: 1.4rem;
+        }
+
+        h2 {
+            font-size: 48px;
+        }
+
+    }
+
+    div:last-child {
+        margin-right: 0rem;
+    }
+}
+
+.player { 
+    grid-area: Player;
+    background-color: white;
+    border-radius: .8rem;
+    margin-top: 1.5rem;
+
+    h1 {
+        padding-left: 3rem;
+        padding-top: 1rem;
+    }
+
+    p {
+        padding-bottom: 3rem;
+        padding-right: 3rem;
+        padding-left: 3rem;
+    }
+
+    video {
+        border-radius: .8rem;
+        width: 100%;
+    }
+}  
+
+@media(max-width: 800px) {
+
+    .container {
+        nav {
+
+            display: flex;
+            justify-content: center;
+            align-items: center;
+
+            svg:first-child {
+                margin-left: 0%;
+            }
+        }
+    }
+
+    .session {
+        display: grid; 
+        gap: 0px 0px; 
+        grid-template-areas: 
+          "Info Info Info"
+          "Player Player Player"
+          "Aulas Aulas Aulas"
+          ". . ."; 
+
+        .info {
+            flex-wrap: wrap;
+            width: 100%;
+            div {
+                width: 100%;
+                margin-right: 0%;
+                margin-bottom: .5rem;
+            }
+        }
+
+        .aulas {
+            margin-right: 0%;
+        }
+    }
+
+}

@@ -1,0 +1,22 @@
+.container {
+
+
+    main {
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        flex-direction: column;
+        height: 50vh;
+
+        text-align: center;
+
+        h1 {
+            margin-top: 1.5rem;
+        }
+
+        p {
+            text-align: center;
+            width: 30rem;
+        }
+    }
+}
