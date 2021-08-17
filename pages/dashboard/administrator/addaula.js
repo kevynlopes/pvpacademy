@@ -53,10 +53,11 @@ export default function ScreenAddAula() {
                 pass: data.pass
             }).then((res) => {
     
+                console.log(res.data)
                 if(res.data.adm === true) return; 
     
                 sessionStorage.setItem('@user', JSON.stringify(res.data))
-                router.push('/')
+                //router.push('/')
     
             }).catch(err => {
     
@@ -77,7 +78,7 @@ export default function ScreenAddAula() {
             const data = await JSON.parse(sessionStorage.getItem('@user'))
             if (!data) return router.push('/')
     
-            axios.post('http://localhost:3333/get/login', {
+            axios.post('https://api.pvpacademy.com.br/get/login', {
                 token: 'Batata',
                 email: data.email,
                 pass: data.pass
