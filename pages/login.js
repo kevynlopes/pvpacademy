@@ -27,6 +27,8 @@ export default function login() {
             pass: pass
         }).then(async (res) => {
 
+            if(res.data.adm === true) return router.push('/dashboard/administrator/addaula')
+
             const aulasBasico = await axios.get('https://api.pvpacademy.com.br/get/aulas/basico')
             const aulasAvancado = await axios.get('https://api.pvpacademy.com.br/get/aulas/avancado')
             const aulasTryHard = await axios.get('https://api.pvpacademy.com.br/get/aulas/tryhard')
