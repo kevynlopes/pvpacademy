@@ -21,15 +21,15 @@ export default function login() {
     const auth = () => {
 
         if(!email || !pass) return setError('email&pass'), setTimeout(() => setError(''), 1000)
-        axios.post('http://api.pvpacademy.com.br/get/login', {
+        axios.post('https://api.pvpacademy.com.br/get/login', {
             token: 'Batata',
             email: email,
             pass: pass
         }).then(async (res) => {
 
-            const aulasBasico = await axios.get('http://api.pvpacademy.com.br/get/aulas/basico')
-            const aulasAvancado = await axios.get('http://api.pvpacademy.com.br/get/aulas/avancado')
-            const aulasTryHard = await axios.get('http://api.pvpacademy.com.br/get/aulas/tryhard')
+            const aulasBasico = await axios.get('https://api.pvpacademy.com.br/get/aulas/basico')
+            const aulasAvancado = await axios.get('https://api.pvpacademy.com.br/get/aulas/avancado')
+            const aulasTryHard = await axios.get('https://api.pvpacademy.com.br/get/aulas/tryhard')
 
             sessionStorage.setItem('@user', JSON.stringify(res.data))
 

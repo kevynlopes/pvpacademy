@@ -29,7 +29,7 @@ export default function Home() {
 
     const getLinks = async () => {
 
-      const data = await fetch("http://api.pvpacademy.com.br/get/link")
+      const data = await fetch("https://api.pvpacademy.com.br/get/link")
       const res = await data.json()
 
       setCompleto(res.completo)

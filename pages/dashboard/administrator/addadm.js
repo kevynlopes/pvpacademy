@@ -20,7 +20,7 @@ export default function ScreenAddAdm() {
 
         if(!cpf || !email || !pass) return;
         
-        axios.post('http://api.pvpacademy.com.br:3333/create/user', {
+        axios.post('https://api.pvpacademy.com.br:3333/create/user', {
             token: 'Batata',
             cpf: cpf,
             email: email,
@@ -42,7 +42,7 @@ export default function ScreenAddAdm() {
             const data = await JSON.parse(sessionStorage.getItem('@user'))
             if (!data) return router.push('/')
     
-            axios.post('http://api.pvpacademy.com.br/get/login', {
+            axios.post('https://api.pvpacademy.com.br/get/login', {
                 token: 'Batata',
                 email: data.email,
                 pass: data.pass

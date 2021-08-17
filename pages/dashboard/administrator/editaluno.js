@@ -20,7 +20,7 @@ export default function ScreenEditAluno() {
     const handleSave = () => {
 
         if(!cpf || !email || !pass || !plans) return;
-        axios.post('http://api.pvpacademy.com.br/edit/user/', {
+        axios.post('https://api.pvpacademy.com.br/edit/user/', {
             token: 'Batata',
             cpf,
             pass,
@@ -41,7 +41,7 @@ export default function ScreenEditAluno() {
             const data = await JSON.parse(sessionStorage.getItem('@user'))
             if (!data) return router.push('/')
     
-            axios.post('http://api.pvpacademy.com.br/get/login', {
+            axios.post('https://api.pvpacademy.com.br/get/login', {
                 token: 'Batata',
                 email: data.email,
                 pass: data.pass

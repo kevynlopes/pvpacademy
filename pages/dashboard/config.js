@@ -19,7 +19,7 @@ export default function config() {
         const data = await JSON.parse(sessionStorage.getItem('@user'))
         if (!data) return router.push('/login')
 
-        axios.post('http://api.pvpacademy.com.br/get/login', {
+        axios.post('https://api.pvpacademy.com.br/get/login', {
             token: 'Batata',
             email: data.email,
             pass: data.pass
@@ -40,7 +40,7 @@ export default function config() {
     const handleSave = () => {
 
         if (!email || !pass) return;
-        axios.post('http://api.pvpacademy.com.br/edit/user', {
+        axios.post('https://api.pvpacademy.com.br/edit/user', {
             token: "Batata",
             name: dados.name,
             email: email,
@@ -75,11 +75,6 @@ export default function config() {
             </nav>
             <main>
                 <div className={styles.session}>
-
-                    <div>
-
-                       
-                    </div>
                     <div>
 
                         <h1>E-mail</h1>

@@ -36,7 +36,7 @@ export default function dashboard() {
             const data = await JSON.parse(sessionStorage.getItem('@user'))
             if(!data) return router.push('/')
 
-            axios.post('http://api.pvpacademy.com.br/get/login', {
+            axios.post('https://api.pvpacademy.com.br/get/login', {
                 token: 'Batata',
                 email: data.email,
                 pass: data.pass
@@ -60,13 +60,13 @@ export default function dashboard() {
 
         const getAulas = async() => {
 
-            const resBasico = await axios.get('http://api.pvpacademy.com.br/get/aulas/basico')
+            const resBasico = await axios.get('https://api.pvpacademy.com.br/get/aulas/basico')
             setBasicoAulas(resBasico.data)
 
-            const resAvancado = await axios.get('http://api.pvpacademy.com.br/get/aulas/avancado')
+            const resAvancado = await axios.get('https://api.pvpacademy.com.br/get/aulas/avancado')
             setAvançadotoAulas(resAvancado.data)
 
-            const resTryHard = await axios.get('http://api.pvpacademy.com.br/get/aulas/tryhard')
+            const resTryHard = await axios.get('https://api.pvpacademy.com.br/get/aulas/tryhard')
             setTryhardAulas(resTryHard.data)
 
 
@@ -74,12 +74,12 @@ export default function dashboard() {
 
         const getAula = async() => {
 
-            axios.get(`http://api.pvpacademy.com.br/get/aula/${router.query.aula}`).then((res) => {
+            axios.get(`https://api.pvpacademy.com.br/get/aula/${router.query.aula}`).then((res) => {
 
                 setAula({
                     name: res.data.name,
                     description: res.data.description,
-                    video: `http://api.pvpacademy.com.br/aulas/${res.data.plan.replace(/(á)/g, 'a')}/${res.data.name}.mp4`
+                    video: `https://api.pvpacademy.com.br/aulas/${res.data.plan.replace(/(á)/g, 'a')}/${res.data.name}.mp4`
                 })
             
             }).catch(err => {
@@ -93,7 +93,7 @@ export default function dashboard() {
         const Verify = async() => {
 
             const data = await JSON.parse(sessionStorage.getItem('@user'))
-            const res = await axios.get(`http://api.pvpacademy.com.br/get/aula/${router.query.aula}`)
+            const res = await axios.get(`https://api.pvpacademy.com.br/get/aula/${router.query.aula}`)
 
             if(data.plans.includes(res.data.plan.toLowerCase())) return;
             router.push('/')

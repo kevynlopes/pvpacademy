@@ -29,7 +29,7 @@ export default function ScreenAddAula() {
 
         body.append("plan", plan.toLowerCase())
 
-        await fetch("http://api.pvpacademy.com.br/create/aula", {
+        await fetch("https://api.pvpacademy.com.br/create/aula", {
             method: "POST",
             body
         }).then((res) => {
@@ -47,7 +47,7 @@ export default function ScreenAddAula() {
             const data = await JSON.parse(sessionStorage.getItem('@user'))
             if (!data) return router.push('/')
     
-            axios.post('http://api.pvpacademy.com.br/get/login', {
+            axios.post('https://api.pvpacademy.com.br/get/login', {
                 token: 'Batata',
                 email: data.email,
                 pass: data.pass

@@ -15,7 +15,7 @@ export default function ScreenSucess() {
 
     React.useEffect(() => {
 
-        axios.post('http://api.pvpacademy.com.br/create/payment', {
+        axios.post('https://api.pvpacademy.com.br/create/payment', {
             collection_id: router.query.collection_id,
             collection_status: router.query.collection_status,
             external_reference: router.query.external_reference,
