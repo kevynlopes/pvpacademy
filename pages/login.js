@@ -27,19 +27,24 @@ export default function login() {
             pass: pass
         }).then(async (res) => {
 
-            sessionStorage.setItem('@user', JSON.stringify(res.data))
-            if(res.data.adm === true) return router.push('/dashboard/administrator/addaula')
+            if(res.data.adm === true) {
 
-            const aulasBasico = await axios.get('https://api.pvpacademy.com.br/get/aulas/basico')
-            const aulasAvancado = await axios.get('https://api.pvpacademy.com.br/get/aulas/avancado')
-            const aulasTryHard = await axios.get('https://api.pvpacademy.com.br/get/aulas/tryhard')
+                sessionStorage.setItem('@user', JSON.stringify(res.data))
+                router.push('/dashboard/administrator/addaula')
 
-            sessionStorage.setItem('@user', JSON.stringify(res.data))
+            } else {
 
-            if(res.data.plans.includes('basico')) return router.push(`/dashboard/aulas/${aulasBasico.data[0].replace(/(.mp4)/g, '')}`)
-            if(res.data.plans.includes('avancado')) return router.push(`/dashboard/aulas/${aulasAvancado.data[0].replace(/(.mp4)/g, '')}`)
-            if(res.data.plans.includes('tryhard')) return router.push(`/dashboard/aulas/${aulasTryHard.data[0].replace(/(.mp4)/g, '')}`)
+                sessionStorage.setItem('@user', JSON.stringify(res.data))
 
+                const aulasBasico = await axios.get('https://api.pvpacademy.com.br/get/aulas/basico')
+                const aulasAvancado = await axios.get('https://api.pvpacademy.com.br/get/aulas/avancado')
+                const aulasTryHard = await axios.get('https://api.pvpacademy.com.br/get/aulas/tryhard')
+    
+                if(res.data.plans.includes('basico')) return router.push(`/dashboard/aulas/${aulasBasico.data[0].replace(/(.mp4)/g, '')}`)
+                if(res.data.plans.includes('avancado')) return router.push(`/dashboard/aulas/${aulasAvancado.data[0].replace(/(.mp4)/g, '')}`)
+                if(res.data.plans.includes('tryhard')) return router.push(`/dashboard/aulas/${aulasTryHard.data[0].replace(/(.mp4)/g, '')}`)    
+
+            }
 
         }).catch(err => {
 
