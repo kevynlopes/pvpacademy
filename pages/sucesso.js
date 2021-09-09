@@ -29,7 +29,7 @@ export default function ScreenSucess() {
             status: router.query.status
         })
 
-    })
+    }, [router.query.collection_id], [router.query.collection_status], [router.query.external_reference], [router.query.merchant_account_id], [router.query.payment_id], [router.query.payment_type], [router.query.preference_id], [router.query.processing_mode], [router.query.site_id], [router.query.status])
 
     return (
         <div className={styles.container}>

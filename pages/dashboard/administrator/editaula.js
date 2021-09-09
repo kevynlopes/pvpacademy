@@ -1,59 +1,65 @@
 import axios from 'axios'
-
-import React from 'react'
-import styles from '../../../styles/Aula.module.scss'
-
-import Sucess from '../../../components/sucess'
-
 import { useRouter } from 'next/router'
 
-export default function ScreenRemAula() {
+import React from 'react'
+import Sucess from '../../../components/sucess'
+
+import styles from '../../../styles/Aula.module.scss'
+
+export default function ScreenAddAula() {
+
     const router = useRouter()
 
-    const [plan, setPlan] = React.useState('basico')
     const [name, setName] = React.useState('')
+    const [newName, setNewName] = React.useState('')
+    const [plan, setPlan] = React.useState('basico')
+    const [description, setDescription] = React.useState('')
 
     const [sucess, setSucess] = React.useState(false)
 
-    const handleSave = async() => {
+    const handleAula = async () => {
 
-        axios.post('https://api.pvpacademy.com.br/delete/aula', {
-            name: name,
-            plan: plan.toLowerCase()
+        if (!newName || !plan) return;
+
+        axios.post('https://api.pvpacademy.com.br/edit/aula', {
+            token: 'Batata',
+            aula: name,
+            plan: plan,
+            update: {
+                name: newName,
+                description: description
+            }
         }).then((res) => {
 
             setSucess(true)
 
-        }).catch(err => {
-
-            return;
-
         })
-        
+
+
     }
 
     React.useEffect(() => {
 
-        const verify = async() => {
+        const verify = async () => {
 
             const data = await JSON.parse(sessionStorage.getItem('@user'))
             if (!data) return router.push('/')
-    
+
             axios.post('https://api.pvpacademy.com.br/get/login', {
                 token: 'Batata',
                 email: data.email,
                 pass: data.pass
             }).then((res) => {
-    
-                if(res.data.adm === true) return; 
-    
+
+                if (res.data.adm === true) return;
+
                 sessionStorage.setItem('@user', JSON.stringify(res.data))
                 router.push('/')
-    
+
             }).catch(err => {
-    
+
                 router.push('/')
-    
+
             })
 
         }
@@ -82,8 +88,8 @@ export default function ScreenRemAula() {
                     <div className={styles.painel}>
 
                         <a href="/dashboard/administrator/addaula">Adicionar aula</a>
-                        <a href="/dashboard/administrator/editaula">Editar aula</a>
-                        <a href="/dashboard/administrator/remaula" className={styles.selected}>Remover aula</a>
+                        <a href="/dashboard/administrator/editaula" className={styles.selected}>Editar aula</a>
+                        <a href="/dashboard/administrator/remaula">Remover aula</a>
                         <a href="/dashboard/administrator/addaluno">Adicionar aluno</a>
                         <a href="/dashboard/administrator/remaluno">Remover aluno</a>
                         <a href="/dashboard/administrator/editaluno">Editar aluno</a>
@@ -93,28 +99,34 @@ export default function ScreenRemAula() {
                     </div>
                     <div className={styles.conteudo}>
 
-                        <h1 className={styles.top}>Remover aula</h1>
+                        <h1 className={styles.top}>Editar aula</h1>
 
                         <h2>Plano</h2>
                         <select onChange={(c) => setPlan(c.target.value.toLowerCase().toLowerCase().replace(/(ç)/g, 'c'))}>
 
                             <option>Basico</option>
                             <option>Avançado</option>
-                            <option>TryHard</option>
-                          
+                            <option>Tryhard</option>
+
                         </select>
 
-                        <h2>Título</h2>
-                        <input onChange={(c) => setName(c.target.value)}placeholder="Insira o título da aula..." />
+                        <h2>Título antigo</h2>
+                        <input onChange={(c) => setName(c.target.value)} placeholder="Insira o título da aula..." />
 
-                        <a onClick={handleSave}>
+                        <h2>Título</h2>
+                        <input onChange={(c) => setNewName(c.target.value)} placeholder="Insira o novo título da aula..." />
+
+                        <h2>Descrição</h2>
+                        <input onChange={(c) => setDescription(c.target.value)} placeholder="Insira a nova descrição da aula..." />
+
+                        <a onClick={handleAula}>
 
                             <svg width="18" height="18" viewBox="0 0 18 18" fill="none" xmlns="http://www.w3.org/2000/svg">
                                 <path d="M2 18H16C16.5304 18 17.0391 17.7893 17.4142 17.4142C17.7893 17.0391 18 16.5304 18 16V5L13 0H2C1.46957 0 0.960859 0.210714 0.585786 0.585786C0.210714 0.960859 0 1.46957 0 2V16C0 16.5304 0.210714 17.0391 0.585786 17.4142C0.960859 17.7893 1.46957 18 2 18ZM4 2H8V4H10V2H12V6H4V2ZM4 10H14V16H4V10Z" fill="white" />
                             </svg>
 
 
-                            Remover aula
+                            Editar aula
 
                         </a>
 
@@ -122,7 +134,8 @@ export default function ScreenRemAula() {
                 </div>
 
             </main>
-            {sucess ? <Sucess>Está aula foi removida com sucesso, já está indisponivel em nosso curso.</Sucess> : null}
+
+            {sucess ? <Sucess>Está aula foi renomeada com sucesso, já está disponivel em nossa plataforma.</Sucess> : null}
         </div>
     )
 }

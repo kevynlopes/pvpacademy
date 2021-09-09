@@ -21,6 +21,8 @@ export default function dashboard() {
     const [avançadoAulas, setAvançadotoAulas] = React.useState(['...'])
     const [tryhardAulas, setTryhardAulas] = React.useState(['...'])
 
+    const [aprendizado, setAprendizado] = React.useState(0)
+
     const [aula, setAula] = React.useState({
         name: '...',
         description: '...',
@@ -60,7 +62,7 @@ export default function dashboard() {
 
         const getAulas = async() => {
 
-            const resBasico = await axios.get('https://api.pvpacademy.com.br/get/aulas/basico')
+            const resBasico = await axios.get('https://api.pvpacademy.com.br/get/aulas/basico')  
             setBasicoAulas(resBasico.data)
 
             const resAvancado = await axios.get('https://api.pvpacademy.com.br/get/aulas/avancado')
@@ -100,9 +102,31 @@ export default function dashboard() {
 
         }
 
+        const checkAulaVista = () => {
+
+            const user = JSON.parse(sessionStorage.getItem('@user'))
+
+            axios.post('https://api.pvpacademy.com.br/edit/add-aula', {
+                token: 'Batata',
+                cpf: user.cpf,
+                quantity: 1
+            })
+
+        }
+
+        const calculeAprendizado = () => {
+            
+            const user = JSON.parse(sessionStorage.getItem('@user'))
+            let aprendizado = Math.floor(user.lesson / basicoAulas.length)
+            setAprendizado(aprendizado)
+
+        }
         getUser()
         getAulas()
         getAula()
+        checkAulaVista()
+
+        calculeAprendizado()
 
         Verify()
         
@@ -138,7 +162,7 @@ export default function dashboard() {
 
                             {dados.plans.map(a => a.toLowerCase()).includes('basico') ? basicoAulas.map((a, i) => (
 
-                                <li onClick={(c) => router.push(`/dashboard/aulas/${a.replace(/(.mp4)/g, '')}`)} key={i}>{i + 1} - {a.replace(/(.mp4)/g, '')}</li>
+                                <li onClick={(c) => router.push(`/dashboard/aulas/${a.replace(/(.mp4)/g, '')}`)} key={i}>{a.replace(/(.mp4)/g, '')}</li>
 
                             )) : basicoAulas.map((a, i) => (
 
@@ -152,9 +176,9 @@ export default function dashboard() {
 
                         <ul>
 
-                            {dados.plans.map(a => a.toLowerCase()).includes('avançado') ? avançadoAulas.map((a, i) => (
+                            {dados.plans.map(a => a.toLowerCase()).includes('avancado') ? avançadoAulas.map((a, i) => (
 
-                                <li onClick={(c) => router.push(`/dashboard/aulas/${a.replace(/(.mp4)/g, '')}`)} key={i}>{i + 1} - {a.replace(/(.mp4)/g, '')}</li>
+                                <li onClick={(c) => router.push(`/dashboard/aulas/${a.replace(/(.mp4)/g, '')}`)} key={i}>{a.replace(/(.mp4)/g, '')}</li>
 
                             )) : avançadoAulas.map((a, i) => (
 
@@ -168,9 +192,9 @@ export default function dashboard() {
 
                         <ul>
 
-                            {dados.plans.map(a => a.toLowerCase()).includes('tryHard') ? tryhardAulas.map((a, i) => (
+                            {dados.plans.map(a => a.toLowerCase()).includes('tryhard') ? tryhardAulas.map((a, i) => (
 
-                                <li onClick={(c) => router.push(`/dashboard/aulas/${a.replace(/(.mp4)/g, '')}`)} key={i}>{i + 1} - {a.replace(/(.mp4)/g, '')}</li>
+                                <li onClick={(c) => router.push(`/dashboard/aulas/${a.replace(/(.mp4)/g, '')}`)} key={i}>{a.replace(/(.mp4)/g, '')}</li>
 
                             )) : tryhardAulas.map((a, i) => (
 
@@ -191,7 +215,7 @@ export default function dashboard() {
                         <div>
 
                             <h1>Aprendizado</h1>
-                            <h2>{(dados.aulas * 100) / basicoAulas.length}%</h2>
+                            <h2>{aprendizado}%</h2>
 
                         </div>
                         <div>

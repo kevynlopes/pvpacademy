@@ -224,3 +224,97 @@
         width: auto;
     }
 }
+
+.porcentBox {
+
+    position: fixed;
+    bottom: 0%;
+    left: 33%;
+
+    margin: 0;
+
+    background-color: white;
+    border-radius: .8rem .8rem 0rem 0rem;
+    width: 30rem;
+
+    h1 {
+        padding-top: 2rem;
+        padding-left: 2rem;
+        font-size: 24px;
+    }
+
+    h2 {
+        padding-left: 2rem;
+        padding-bottom: 1rem;
+        font-size: 36px;
+    }
+
+    h3 {
+        font-size: 1rem;
+    }
+
+    > div:last-child {
+        background-color: #F1F1F1;
+        padding: 1rem 2rem;
+    }
+
+    animation: show 1s ease;
+}
+
+.porcentBoxHidden {
+    position: fixed;
+    bottom: 0%;
+    left: 33%;
+
+    margin: 0;
+
+    background-color: white;
+    border-radius: .8rem .8rem 0rem 0rem;
+    width: 30rem;
+
+    h1 {
+        padding-top: 2rem;
+        padding-left: 2rem;
+        font-size: 24px;
+    }
+
+    h2 {
+        padding-left: 2rem;
+        padding-bottom: 1rem;
+        font-size: 36px;
+    }
+
+    h3 {
+        font-size: 1rem;
+    }
+
+    > div:last-child {
+        background-color: #F1F1F1;
+        padding: 1rem 2rem;
+    }
+
+
+    animation: hidden 1s ease;
+}
+
+@keyframes hidden {
+    from {
+        transform: translateY(0rem);
+        opacity: 1;
+    }
+    to {
+        transform: translateY(3rem);
+        opacity: 0;
+    }
+}
+
+@keyframes show {
+    from {
+        transform: translateY(2rem);
+        opacity: 0;
+    }
+    to {
+        transform: translateY(0rem);
+        opacity: 1;
+    }
+}

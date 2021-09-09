@@ -26,7 +26,7 @@ export default function ScreenAddAluno() {
         axios.post('https://api.pvpacademy.com.br/create/user', {
             token: 'Batata',
             name: name,
-            plan: plan,
+            plans: [plan],
             email: email,
             cpf: cpf,
             pass: pass
@@ -88,6 +88,7 @@ export default function ScreenAddAluno() {
                     <div className={styles.painel}>
 
                         <a href="/dashboard/administrator/addaula">Adicionar aula</a>
+                        <a href="/dashboard/administrator/editaula">Editar aula</a>
                         <a href="/dashboard/administrator/remaula">Remover aula</a>
                         <a href="/dashboard/administrator/addaluno" className={styles.selected}>Adicionar aluno</a>
                         <a href="/dashboard/administrator/remaluno">Remover aluno</a>
@@ -126,7 +127,7 @@ export default function ScreenAddAluno() {
                             </svg>
 
 
-                            Remover aula
+                            Adicionar aluno
 
                         </a>
 

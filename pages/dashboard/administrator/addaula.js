@@ -15,26 +15,43 @@ export default function ScreenAddAula() {
     const [plan, setPlan] = React.useState('basico')
     const [description, setDescription] = React.useState('')
 
+    const [link, setLink] = React.useState('')
+    const [porcent, setPorcent] = React.useState(0)
+
     const [sucess, setSucess] = React.useState(false)
 
     const handleAula = async () => {
 
-        if(!file || !name || !plan || !description) return;
+        if (!file || !name || !plan || !description) return;
 
         const body = new FormData()
 
         body.append("file", file)
         body.append('name', name)
         body.append('description', description)
-
         body.append("plan", plan.toLowerCase())
 
-        await fetch("https://api.pvpacademy.com.br/create/aula", {
-            method: "POST",
-            body
+        axios.post('https://api.pvpacademy.com.br/create/aula', body, {
+            onUploadProgress: (progressEvent) => {
+
+                setSucess(true)
+
+                console.log(`${progressEvent.loaded} - [KB]`)
+                console.log(`${progressEvent.total} - [KB]`)
+
+                let percent = Math.floor(progressEvent.loaded * 100 / progressEvent.total)
+                if (percent < 100) {
+
+                    setPorcent(percent)
+
+                }
+
+            }
         }).then((res) => {
 
-            setSucess(true)
+            setPorcent(100)
+            setLink(`https://api.pvpacademy.com.br/dashboard/aulas/${name}`)
+
 
         })
 
@@ -42,57 +59,26 @@ export default function ScreenAddAula() {
 
     React.useEffect(() => {
 
-        const verify = async() => {
+        const verify = async () => {
 
             const data = await JSON.parse(sessionStorage.getItem('@user'))
             if (!data) return router.push('/')
-    
+
             axios.post('https://api.pvpacademy.com.br/get/login', {
                 token: 'Batata',
                 email: data.email,
                 pass: data.pass
             }).then((res) => {
-    
-                console.log(res.data)
-                if(res.data.adm === true) return; 
-    
-                sessionStorage.setItem('@user', JSON.stringify(res.data))
-                //router.push('/')
-    
-            }).catch(err => {
-    
-                router.push('/')
-    
-            })
 
-        }
+                if (res.data.adm === true) return;
 
-        verify()
-
-    })
-
-    React.useEffect(() => {
-
-        const verify = async() => {
-
-            const data = await JSON.parse(sessionStorage.getItem('@user'))
-            if (!data) return router.push('/')
-    
-            axios.post('https://api.pvpacademy.com.br/get/login', {
-                token: 'Batata',
-                email: data.email,
-                pass: data.pass
-            }).then((res) => {
-    
-                if(res.data.adm === true) return; 
-    
                 sessionStorage.setItem('@user', JSON.stringify(res.data))
                 router.push('/')
-    
+
             }).catch(err => {
-    
+
                 router.push('/')
-    
+
             })
 
         }
@@ -121,6 +107,7 @@ export default function ScreenAddAula() {
                     <div className={styles.painel}>
 
                         <a href="/dashboard/administrator/addaula" className={styles.selected}>Adicionar aula</a>
+                        <a href="/dashboard/administrator/editaula">Editar aula</a>
                         <a href="/dashboard/administrator/remaula">Remover aula</a>
                         <a href="/dashboard/administrator/addaluno">Adicionar aluno</a>
                         <a href="/dashboard/administrator/remaluno">Remover aluno</a>
@@ -179,9 +166,22 @@ export default function ScreenAddAula() {
 
             </main>
 
-            {sucess ?
-                <Sucess>Sucesso, a aula já está disponivel em nosso curso.</Sucess>
-                : null}
+            {sucess ? (
+                <div className={styles.porcentBox}>
+                    <div>
+
+                        <h1>Status de Upload</h1>
+                        <h2>{porcent}%</h2>
+
+                    </div>
+                    <div>
+
+                        <h3>Link de acesso: {link ? <a href={link}>(clique aqui)</a> : 'Indisponivel.'}</h3>
+
+                    </div>
+                </div>
+
+            ) : null}
         </div>
     )
 }

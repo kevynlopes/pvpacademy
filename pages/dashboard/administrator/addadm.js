@@ -85,6 +85,7 @@ export default function ScreenAddAdm() {
                     <div className={styles.painel}>
 
                         <a href="/dashboard/administrator/addaula">Adicionar aula</a>
+                        <a href="/dashboard/administrator/editaula">Editar aula</a>
                         <a href="/dashboard/administrator/remaula">Remover aula</a>
                         <a href="/dashboard/administrator/addaluno">Adicionar aluno</a>
                         <a href="/dashboard/administrator/remaluno">Remover aluno</a>

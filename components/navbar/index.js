@@ -28,10 +28,10 @@ export default function navbar() {
 
                 <ul>
 
-                    <li>Início</li>
-                    <li>Vantagens</li>
-                    <li>Planos</li>
-                    <li>Avaliações</li>
+                    <li onClick={(c) => router.push('/')}>Início</li>
+                    <li onClick={(c) => router.push('/')}>Vantagens</li>
+                    <li onClick={(c) => router.push('/')}>Planos</li>
+                    <li onClick={(c) => router.push('/')}>Avaliações</li>
                     <li onClick={handleRedirect}>
 
                         <svg width="14" height="14" viewBox="0 0 14 14" fill="none" xmlns="http://www.w3.org/2000/svg">
