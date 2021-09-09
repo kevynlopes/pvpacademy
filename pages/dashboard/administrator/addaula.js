@@ -50,8 +50,7 @@ export default function ScreenAddAula() {
         }).then((res) => {
 
             setPorcent(100)
-            setLink(`https://api.pvpacademy.com.br/dashboard/aulas/${name}`)
-
+            setLink(`https://pvpacademy.com.br/dashboard/aulas/${name}`)
 
         })
 
