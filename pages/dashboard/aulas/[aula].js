@@ -109,6 +109,7 @@ export default function dashboard() {
             axios.post('https://api.pvpacademy.com.br/edit/add-aula', {
                 token: 'Batata',
                 cpf: user.cpf,
+                name: user.cpf,
                 quantity: 1
             })
 
